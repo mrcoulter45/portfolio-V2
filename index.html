@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Synthwave Portfolio</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Orbitron', sans-serif;
+        background: linear-gradient(to bottom, #0d0d0d, #1a1a2e);
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 0;
+        background-image:
+          linear-gradient(to bottom, rgba(0, 255, 255, 0.2) 1px, transparent 1px),
+          linear-gradient(to right, rgba(0, 255, 255, 0.15) 1px, transparent 1px);
+        background-size:
+          40px 40px,
+          40px 40px;
+        background-blend-mode: screen, screen;
+        mix-blend-mode: screen;
+        animation: scrollGrid 2s linear infinite;
+        /* NEW: horizontal transparency mask */
+        -webkit-mask-image: linear-gradient(to right, black, transparent 25%, transparent 75%, black);
+        mask-image: linear-gradient(to right, black, transparent 25%, transparent 75%, black);
+        mask-repeat: no-repeat;
+        mask-size: 100% 100%;
+      }
+
+      @keyframes scrollGrid {
+        0% {
+          background-position: 0 0;
+        }
+
+        100% {
+          background-position: 0 40px;
+        }
+      }
+
+      header {
+        background: radial-gradient(circle, #ff00ff, #6600cc);
+        padding: 3rem 1rem;
+        text-align: center;
+        color: #fff;
+      }
+
+      header h1 {
+        font-size: 3rem;
+        margin: 0;
+        text-shadow: 0 0 10px #ff00ff;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      nav a {
+        display: inline-block;
+        background: #0ff2;
+        /* Semi-transparent cyan background */
+        color: white;
+        /* Dark text to contrast */
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        border: 1px solid #0ff;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        box-shadow: 0 0 12px #00ffff99;
+        /* Cyan glow on hover */
+        cursor: pointer;
+      }
+
+      section {
+        padding: 3rem 2rem;
+      }
+
+      h2 {
+        text-shadow: 0 0 5px #ff00ff;
+        color: #fff;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid #ff00ff44;
+        border-radius: 10px;
+        padding: 2rem;
+        margin: 1rem 0;
+        box-shadow: 0 0 15px #6600cc;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .skill {
+        background: #0ff2;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+        border: 1px solid #0ff;
+      }
+
+      .skill:hover {
+        box-shadow: 0 0 12px #00ffff99;
+        /* Cyan glow */
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .socials a {
+        text-decoration: none;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #1a1a2e;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        border: 1px solid #ff00ff44;
+        box-shadow: 0 0 10px #6600cc;
+        transition: all 0.3s ease;
+      }
+
+      .socials a:hover {
+        background: #ff00ff33;
+      }
+
+      a.youtube:hover {
+        background: rgb(234, 51, 61);
+      }
+
+      a.tiktok:hover {
+        background: white;
+        color: black;
+      }
+
+      a.linkedin:hover {
+        background: rgb(45, 100, 188);
+      }
+
+      a.github:hover {
+        background: white;
+        color: black;
+      }
+
+      a.twitch:hover {
+        background: rgb(135, 74, 246);
+      }
+
+      a.tools:hover {
+        background: rgba(255, 0, 255, 0.2);
+      }
+
+      a.ntgreek:hover {
+        background: #FFD700;
+      }
+
+      .socials i {
+        font-size: 1.2rem;
+      }
+
+      footer {
+        background: #111;
+        padding: 1rem;
+        text-align: center;
+        color: #999;
+      }
+
+      input,
+      textarea,
+      button {
+        background: #0a0f11;
+        /* Deep cyan-tinted dark background */
+        color: #0ff;
+        /* Bright cyan text */
+        border: 1px solid #0ff;
+        /* Cyan border */
+        padding: 0.5rem 1rem;
+        margin: 0.5rem 0;
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 0 12px #00ffff99;
+        /* Cyan glow */
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      input:focus-visible,
+      textarea:focus-visible {
+        box-shadow: 0 0 10px 7px #00ffff99;
+        /* Cyan glow */
+        outline-width: 0px;
+      }
+
+      button:hover {
+        background: #0ff;
+        /* Cyan fill on hover */
+        color: #0a0f11;
+        /* Inverse: dark cyan text */
+        text-shadow: 0 0 8px #0ff;
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+
+      .container {
+        max-width: 60vw;
+        margin: 0 auto;
+      }
+
+      .profile-pic {
+        width: 300px;
+        border-radius: 1rem;
+        border: 1px solid #0ff;
+        box-shadow: 0 0 15px #00ffffaa;
+        object-fit: cover;
+        vertical-align: bottom;
+      }
+
+      .profile-pic-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 1rem;
+        background: rgba(255, 0, 255, 0.15);
+        /* translucent synthwave purple */
+        pointer-events: none;
+        /* lets clicks pass through */
+      }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Michael Coulter</h1>
+      <p>Computer Engineer | Tech Enthusiast</p>
+      <div class="socials">
+        <a href="https://www.youtube.com/@mrcoulter45" class="youtube" target="_blank" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://www.tiktok.com/@coult45_?_t=ZT-8xUMBNv58JB&_r=1" class="tiktok" target="_blank" title="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/michael-coulter-164868153/" class="linkedin" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/mrcoulter45" class="github" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.twitch.tv/coult45_" class="twitch" target="_blank" title="Twitch">
+          <i class="fab fa-twitch"></i>
+        </a>
+        <a href="https://mrcoulter45.github.io/tools/" class="tools" target="_blank" title="Tools Website">
+          <i class="fas fa-tools"></i>
+        </a>
+        <a href="https://mrcoulter45.github.io/nt-greek/" class="ntgreek" target="_blank" title="NT Greek Website">
+          <i class="fas fa-scroll"></i>
+        </a>
+      </div>
+    </header>
+    <div class="container">
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#videos">Videos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <section id="about">
+        <h2>About Me</h2>
+        <div class="card" style="display: flex; gap: 2rem; align-items: center;">
+          <div class="profile-pic-wrapper">
+            <img src="images/michael.jpeg" alt="Michael Coulter" class="profile-pic" />
+            <div class="overlay"></div>
+          </div>
+          <p style="line-height: 1.75;">Hi, I'm Michael, a computer engineer at Arm with a passion for bending electronics, programming, AI, and robotics to push the boundaries of what technology can do. I explore the edge of creativity and technology through hands-on builds and future-focused projects. Whether I'm designing intelligent systems or making videos that bring ideas to life, I'm always pushing the edge of what's possible.</p>
+        </div>
+      </section>
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="grid">
+          <div class="card">Project 1 – Synthwave-themed robot assistant</div>
+          <div class="card">Project 2 – VR retro-futuristic cityscape</div>
+          <div class="card">Project 3 – Portfolio site with glowing neon UI</div>
+        </div>
+      </section>
+      <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div class="skill">C++</div>
+          <div class="skill">Python</div>
+          <div class="skill">Angular</div>
+          <div class="skill">WebGL</div>
+          <div class="skill">Unreal Engine</div>
+          <div class="skill">Embedded Systems</div>
+        </div>
+      </section>
+      <section id="videos">
+        <h2>Media & Videos</h2>
+        <div class="card">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/1g3eyZjLn6I" title="Featured Video" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="card">
+          <form style="display: flex; flex-direction: column; align-items: center; max-width: 80%; margin: 0 auto;" action="https://formsubmit.co/mrcoulter45@gmail.com" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" rows="5"></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2025 Michael Coulter | All rights reserved.</p>
+    </footer>
+  </body>
+</html>
