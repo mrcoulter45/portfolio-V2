@@ -150,6 +150,8 @@
         border-radius: 5px;
         font-weight: bold;
         border: 1px solid #0ff;
+        position: relative;
+        cursor: pointer;
       }
 
       .skill:hover {
@@ -310,6 +312,52 @@
         80% { transform: translate(1px, -1px); }
         100% { transform: none; }
       }
+
+      .skill-popup-inline-wrapper {
+        width: 100%;
+        display: block;
+      }
+
+      .skill-popup-inline {
+        background: rgba(0, 255, 255, 0.1);
+        border: 1px solid #0ff;
+        box-shadow: 0 0 20px #00ffffaa;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #fff;
+        max-width: 100%;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+        max-width: 30rem;
+      }
+
+      .skill-popup-inline h3 {
+        margin-top: 0;
+        color: #0ff;
+        font-size: 1.2rem;
+      }
+
+      .skill-popup-inline .close-btn {
+        position: absolute;
+        top: 0rem;
+        right: 0.5rem;
+        cursor: pointer;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1rem;
+        background: transparent;
+        border: none;
+        padding: 0;
+        line-height: 1;
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+
+      .skill-popup-inline .close-btn:hover {
+        color: #0ff;
+        text-shadow: 0 0 8px #0ff;
+      }
     </style>
     <script>
       const nameText = "Michael Coulter";
@@ -323,7 +371,6 @@
           nameIndex++;
           setTimeout(typeWriterName, 60);
         } else {
-          // Once name finishes, start description
           typeWriterDesc();
         }
       }
@@ -336,15 +383,42 @@
         }
       }
 
-      window.onload = typeWriterName;
+      window.onload = function () {
+        typeWriterName();
+
+        document.querySelectorAll(".skill").forEach(skill => {
+          skill.addEventListener("click", () => {
+            const existingPopup = document.querySelector(".skill-popup-inline-wrapper");
+            if (existingPopup) existingPopup.remove();
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "skill-popup-inline-wrapper";
+
+            const popup = document.createElement("div");
+            popup.className = "skill-popup-inline";
+            popup.innerHTML = `
+              <button class="close-btn">&times;</button>
+              <h3>${skill.textContent}</h3>
+              <p>${skill.getAttribute("data-desc")}</p>
+            `;
+
+            popup.querySelector(".close-btn").addEventListener("click", () => {
+              wrapper.remove();
+            });
+
+            wrapper.appendChild(popup);
+            skill.insertAdjacentElement("afterend", wrapper);
+          });
+        });
+      };
     </script>
   </head>
   <body>
     <header>
       <!-- <h1>Michael Coulter</h1> -->
-      <h1 id="typewriterName">&nbsp;</h1>
+      <h1 id="typewriterName">&#8203;</h1>
       <!-- <p>Computer Engineer | Tech Enthusiast</p> -->
-      <p id="typewriterDesc">&nbsp;</p>
+      <p id="typewriterDesc">&#8203;</p>
       <div class="socials">
         <a href="https://www.youtube.com/@mrcoulter45" class="youtube" target="_blank" title="YouTube">
           <i class="fab fa-youtube"></i>
@@ -398,12 +472,65 @@
       <section id="skills">
         <h2>Skills</h2>
         <div class="skills">
-          <div class="skill">C++</div>
-          <div class="skill">Python</div>
-          <div class="skill">Angular</div>
-          <div class="skill">WebGL</div>
-          <div class="skill">Unreal Engine</div>
-          <div class="skill">Embedded Systems</div>
+          <div class="skill" data-desc="Object-oriented language used for high-performance systems and apps.">C++</div>
+          <div class="skill" data-desc="Versatile scripting for AI, data, automation & backend magic.">Python</div>
+          <div class="skill" data-desc="Component-driven frontend frameworks for dynamic web apps.">Angular</div>
+          <div class="skill" data-desc="Real-time 3D graphics rendered right in the browser.">WebGL</div>
+          <div class="skill" data-desc="Cinematic game engine for immersive interactive experiences.">Unreal Engine</div>
+          <div class="skill" data-desc="Low-level control of microcontrollers and hardware logic.">Embedded Systems</div>
+          <div class="skill" data-desc="Integrated circuits that combine CPU, memory, and I/O on a single chip.">System on a Chip (SoC)</div>
+          <div class="skill" data-desc="Designing how blocks of hardware communicate across a chip.">Interconnect Architecture</div>
+          <div class="skill" data-desc="Industry-standard interface protocols by Arm, like AXI, AHB, and APB.">AMBA Protocols</div>
+          <div class="skill" data-desc="Reusable, configurable IP blocks for building complex SoCs.">Arm System IP</div>
+          <div class="skill" data-desc="Debug and trace solutions used in Arm-based SoCs.">CoreSight / NIC / CMN / NoC</div>
+          <div class="skill" data-desc="Designing intuitive and visually appealing interfaces.">UI/UX Design</div>
+          <div class="skill" data-desc="Developing tools that configure and validate hardware systems.">Hardware Configuration Tooling</div>
+          <div class="skill" data-desc="Understanding and applying electrical principles in design.">Electrical Engineering</div>
+          <div class="skill" data-desc="Applied knowledge of algebra, calculus, and discrete math in engineering.">Mathematics</div>
+          <div class="skill" data-desc="Low-level programming close to the hardware layer.">Assembly Language</div>
+          <div class="skill" data-desc="Hands-on understanding of computer internals and components.">Computer Hardware</div>
+          <div class="skill" data-desc="Blueprinting modular and scalable software systems.">Software Design</div>
+          <div class="skill" data-desc="Dynamic web scripting language used for interactivity and logic.">JavaScript</div>
+          <div class="skill" data-desc="Typed superset of JavaScript, perfect for large codebases.">TypeScript</div>
+          <div class="skill" data-desc="Agile project and task management tool for software teams.">Jira</div>
+          <div class="skill" data-desc="A design approach centered on objects and their interactions.">Object-Oriented Programming (OOP)</div>
+          <div class="skill" data-desc="Finding and resolving defects in software or hardware.">Debugging</div>
+          <div class="skill" data-desc="Hardware description language used to model electronic systems.">Verilog</div>
+          <div class="skill" data-desc="Algorithms and models that enable machines to learn from data.">Machine Learning</div>
+          <div class="skill" data-desc="Programming reconfigurable logic for hardware acceleration.">FPGA Programming</div>
+          <div class="skill" data-desc="Programming and interfacing with compact embedded processors.">Microcontrollers</div>
+          <div class="skill" data-desc="Designing custom electronic boards for prototypes and products.">Printed Circuit Board (PCB) Design</div>
+          <div class="skill" data-desc="OS designed for deterministic responses and tight timing control.">Real-Time Operating Systems (RTOS)</div>
+          <div class="skill" data-desc="Procedural language used in embedded and systems programming.">C</div>
+          <div class="skill" data-desc="Query language used to interact with relational databases.">SQL</div>
+          <div class="skill" data-desc="Frontend JavaScript library for building user interfaces.">React.js</div>
+          <div class="skill" data-desc="Containerization platform for consistent dev and production setups.">docker</div>
+          <div class="skill" data-desc="Version control system for managing collaborative codebases.">Git</div>
+          <div class="skill" data-desc="Markup language for structuring web content.">HTML</div>
+          <div class="skill" data-desc="Styling language that controls the look of HTML elements.">CSS</div>
+          <div class="skill" data-desc="Organized storage of data for fast access and analysis.">Databases</div>
+          <div class="skill" data-desc="Microcontroller platform for DIY electronics and rapid prototyping.">Arduino</div>
+          <div class="skill" data-desc="Open-source OS used in servers, embedded, and dev workflows.">Linux</div>
+          <div class="skill" data-desc="Experience building and supporting software for Windows environments.">Windows</div>
+          <div class="skill" data-desc="Overseeing teams and coordinating efforts for successful projects.">Management</div>
+          <div class="skill" data-desc="Working with clients to ensure product satisfaction and support.">Customer Service</div>
+          <div class="skill" data-desc="Motivating, guiding, and aligning teams to common goals.">Leadership</div>
+          <div class="skill" data-desc="Delivering engaging and clear presentations to technical audiences.">Public Speaking</div>
+          <div class="skill" data-desc="Connecting devices and sensors to create smart systems.">Internet of Things (IoT)</div>
+          <div class="skill" data-desc="End-to-end expertise in frontend and backend development.">Full-Stack Development</div>
+          <div class="skill" data-desc="Container orchestration for deploying scalable systems.">Kubernetes</div>
+          <div class="skill" data-desc="Advanced HDL for modeling digital circuits.">SystemVerilog</div>
+          <div class="skill" data-desc="Verification methodology for ensuring functional correctness.">UVM</div>
+          <div class="skill" data-desc="IDE used for programming and debugging Arm Cortex-M devices.">Keil uVision</div>
+          <div class="skill" data-desc="IoT-focused C++ SDK for Arm microcontrollers.">Arm Mbed</div>
+          <div class="skill" data-desc="Instruction set used in Arm-based processors.">Arm ISA</div>
+          <div class="skill" data-desc="Legacy Arm development IDE and debugger.">DS-5 Development Studio</div>
+          <div class="skill" data-desc="Java-based educational IDE for beginners learning OOP.">Java Greenfoot</div>
+          <div class="skill" data-desc="End-to-end process of designing, building, testing, and deploying code.">Software Development</div>
+          <div class="skill" data-desc="Understanding binary logic and digital signal processing.">Digital Electronics</div>
+          <div class="skill" data-desc="Reduced instruction set computing architecture from Arm.">ARM Architecture</div>
+          <div class="skill" data-desc="Designing and analyzing CPU and system-level hardware architecture.">Computer Architecture</div>
+          <div class="skill" data-desc="Defining hardware behavior at the register-transfer level.">RTL Design</div>
         </div>
       </section>
       <section id="videos">
