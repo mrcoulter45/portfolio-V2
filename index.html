@@ -5,14 +5,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
     <link rel="manifest" href="images/favicon/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Synthwave Portfolio</title>
+    <title>Michael Coulter Portfolio</title>
     <style>
       body {
         margin: 0;
         font-family: 'Orbitron', sans-serif;
-        background: linear-gradient(to bottom, #0d0d0d, #1a1a2e);
+        background: rgb(14,14,16);
         color: #ffffff;
         overflow-x: hidden;
       }
@@ -52,9 +54,30 @@
         }
       }
 
+      @keyframes pulseGlow {
+        0%, 100% { text-shadow: 0 0 8px #0ff, 0 0 16px #0ff; }
+        50% { text-shadow: 0 0 12px #0ff, 0 0 24px #0ff; }
+      }
+
+      h1, h2 {
+        animation: pulseGlow 1.5s infinite;
+      }
+
+      /*.vhs-text {
+        text-shadow:
+          2px 0 red,
+          -2px 0 cyan;
+        animation: flicker 0.2s infinite alternate;
+      }
+
+      @keyframes flicker {
+        0% { opacity: 0.85; transform: translateX(-0.5px); }
+        100% { opacity: 1; transform: translateX(0.5px); }
+      }*/
+
       header {
         background: radial-gradient(circle, #ff00ff, #6600cc);
-        padding: 3rem 1rem;
+        padding: 2rem 1rem;
         text-align: center;
         color: #fff;
       }
@@ -93,7 +116,7 @@
       }
 
       section {
-        padding: 3rem 2rem;
+        padding: 2rem 2rem;
       }
 
       h2 {
@@ -197,7 +220,7 @@
       }
 
       footer {
-        background: #111;
+        background: rgba(255, 255, 255, 0.05);
         padding: 1rem;
         text-align: center;
         color: #999;
@@ -249,7 +272,7 @@
       }
 
       .profile-pic {
-        width: 300px;
+        height: 450px;
         border-radius: 1rem;
         border: 1px solid #0ff;
         box-shadow: 0 0 15px #00ffffaa;
@@ -274,14 +297,54 @@
         pointer-events: none;
         /* lets clicks pass through */
       }
+
+      .glitch:hover {
+        animation: glitch 0.3s;
+      }
+
+      @keyframes glitch {
+        0% { transform: skew(0.5deg); }
+        20% { transform: translate(-1px, 1px); }
+        40% { transform: translate(1px, -1px); }
+        60% { transform: translate(-1px, 1px); }
+        80% { transform: translate(1px, -1px); }
+        100% { transform: none; }
+      }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script>
+      const nameText = "Michael Coulter";
+      const descText = "Computer Engineer | Tech Enthusiast";
+      let nameIndex = 0;
+      let descIndex = 0;
+
+      function typeWriterName() {
+        if (nameIndex < nameText.length) {
+          document.getElementById("typewriterName").textContent += nameText.charAt(nameIndex);
+          nameIndex++;
+          setTimeout(typeWriterName, 60);
+        } else {
+          // Once name finishes, start description
+          typeWriterDesc();
+        }
+      }
+
+      function typeWriterDesc() {
+        if (descIndex < descText.length) {
+          document.getElementById("typewriterDesc").textContent += descText.charAt(descIndex);
+          descIndex++;
+          setTimeout(typeWriterDesc, 40);
+        }
+      }
+
+      window.onload = typeWriterName;
+    </script>
   </head>
   <body>
     <header>
-      <h1>Michael Coulter</h1>
-      <p>Computer Engineer | Tech Enthusiast</p>
+      <!-- <h1>Michael Coulter</h1> -->
+      <h1 id="typewriterName">&nbsp;</h1>
+      <!-- <p>Computer Engineer | Tech Enthusiast</p> -->
+      <p id="typewriterDesc">&nbsp;</p>
       <div class="socials">
         <a href="https://www.youtube.com/@mrcoulter45" class="youtube" target="_blank" title="YouTube">
           <i class="fab fa-youtube"></i>
@@ -314,8 +377,8 @@
         <a href="#videos">Videos</a>
         <a href="#contact">Contact</a>
       </nav>
-      <section id="about">
-        <h2>About Me</h2>
+      <section id="about" style="padding-top: 0rem;">
+        <h2 style="margin-top: 0rem;">About Me</h2>
         <div class="card" style="display: flex; gap: 2rem; align-items: center;">
           <div class="profile-pic-wrapper">
             <img src="images/michael.jpeg" alt="Michael Coulter" class="profile-pic" />
@@ -327,9 +390,9 @@
       <section id="projects">
         <h2>Projects</h2>
         <div class="grid">
-          <div class="card">Project 1 – Synthwave-themed robot assistant</div>
-          <div class="card">Project 2 – VR retro-futuristic cityscape</div>
-          <div class="card">Project 3 – Portfolio site with glowing neon UI</div>
+          <div class="card">Hovering AI robot assistant</div>
+          <div class="card">VR retro-futuristic cityscape</div>
+          <div class="card">BB-8 robot</div>
         </div>
       </section>
       <section id="skills">
