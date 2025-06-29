@@ -411,6 +411,81 @@
           --gradient-angle: 360deg;
         }
       }
+
+      /*Mobile-friendly styling*/
+      @media (max-width: 768px) {
+        body {
+          font-size: 0.95rem;
+        }
+
+        .container {
+          max-width: 90vw;
+          padding: 0 1rem;
+        }
+
+        header h1 {
+          font-size: 2rem;
+        }
+
+        .socials {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+
+        nav {
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        nav a {
+          font-size: 0.9rem;
+          padding: 0.4rem 0.75rem;
+        }
+
+        .card {
+          padding: 1.2rem;
+        }
+
+        .skills {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.75rem;
+        }
+
+        .skill {
+          max-width: fit-content;
+          text-align: center;
+          padding: 0.75rem 1rem;
+        }
+
+        .profile-pic {
+          height: auto;
+          max-width: 100%;
+        }
+
+        .card[style*="display: flex"] {
+          flex-direction: column;
+          gap: 1rem;
+          align-items: center;
+          text-align: center;
+        }
+
+        iframe {
+          height: 200px;
+        }
+
+        form {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .skill-popup-inline {
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+      }
     </style>
     <script>
       const nameText = "Michael Coulter";
