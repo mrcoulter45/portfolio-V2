@@ -358,6 +358,59 @@
         color: #0ff;
         text-shadow: 0 0 8px #0ff;
       }
+
+      /* Allow animation of custom gradient angle */
+      @property --gradient-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      /* Glowing animated circuit effect for selected skill */
+      .skill.glow-active {
+        position: relative;
+        z-index: 0;
+        background: #0ff2;
+        border-radius: 10px;
+        box-shadow:
+          0 0 20px #ff2daf,
+          0 0 30px #ff2daf55,
+          inset 0 0 15px #ff2daf33;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      /* Rotating conic glow ring around the skill */
+      .skill.glow-active::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        z-index: -1;
+        background: conic-gradient(
+          from var(--gradient-angle),
+          #FF2DAF,
+          #9D00FF,
+          #FF2DAF
+        );
+        border-radius: 10px;
+        padding: 4px;
+
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: destination-out;
+
+        animation: rotate 4s linear infinite;
+        opacity: 1;
+      }
+
+      @keyframes rotate {
+        from {
+          --gradient-angle: 0deg;
+        }
+        to {
+          --gradient-angle: 360deg;
+        }
+      }
     </style>
     <script>
       const nameText = "Michael Coulter";
@@ -389,7 +442,10 @@
         document.querySelectorAll(".skill").forEach(skill => {
           skill.addEventListener("click", () => {
             const existingPopup = document.querySelector(".skill-popup-inline-wrapper");
-            if (existingPopup) existingPopup.remove();
+            if (existingPopup) {
+              existingPopup.remove();
+              document.querySelectorAll(".skill").forEach(s => s.classList.remove("glow-active"));
+            }
 
             const wrapper = document.createElement("div");
             wrapper.className = "skill-popup-inline-wrapper";
@@ -404,9 +460,11 @@
 
             popup.querySelector(".close-btn").addEventListener("click", () => {
               wrapper.remove();
+              skill.classList.remove("glow-active");
             });
 
             wrapper.appendChild(popup);
+            skill.classList.add("glow-active");
             skill.insertAdjacentElement("afterend", wrapper);
           });
         });
