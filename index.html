@@ -9,7 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Michael Coulter Portfolio</title>
+    <meta name="description" content="Michael Coulter | Computer Engineer | Synthwave Portfolio featuring projects in AI, robotics, embedded systems, and software development.">
+    <meta name="keywords" content="Michael Coulter, computer engineer, AI projects, robotics, embedded systems, software developer, portfolio, Arm engineer">
+    <meta name="author" content="Michael Coulter">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Michael Coulter | Engineer & Creator">
+    <meta property="og:description" content="Explore Michael Coulter's synthwave-themed portfolio of innovative projects in tech and engineering.">
+    <meta property="og:url" content="https://mrcoulter45.github.io/portfolio-V2/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mrcoulter45.github.io/portfolio-V2/images/michael.jpeg">
+    <title>Michael Coulter | Computer Engineer & Creator Portfolio</title>
     <style>
       body {
         margin: 0;
@@ -517,7 +526,8 @@
       }
 
       window.onload = function () {
-        typeWriterName();
+        // typeWriterName();
+        typeWriterDesc();
 
         document.querySelectorAll(".skill").forEach(skill => {
           skill.addEventListener("click", () => {
@@ -553,8 +563,8 @@
   </head>
   <body>
     <header>
-      <!-- <h1>Michael Coulter</h1> -->
-      <h1 id="typewriterName">&#8203;</h1>
+      <h1>Michael Coulter</h1>
+      <!-- <h1 id="typewriterName">&#8203;</h1> -->
       <!-- <p>Computer Engineer | Tech Enthusiast</p> -->
       <p id="typewriterDesc">&#8203;</p>
       <div class="socials">
@@ -691,6 +701,8 @@
     </div>
     <footer>
       <p>&copy; 2025 Michael Coulter | All rights reserved.</p>
+      <p style="display: none;"><strong>Michael Coulter</strong> is a computer engineer known for building futuristic, AI-driven, and embedded systems-powered projects. This site showcases Michael Coulter's work in robotics, full-stack development, and hardware design.</p>
+
     </footer>
   </body>
 </html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mrcoulter45.github.io/portfolio-V2/sitemap.xml
